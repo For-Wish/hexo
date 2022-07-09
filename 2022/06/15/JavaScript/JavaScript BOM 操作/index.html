@@ -1,0 +1,503 @@
+<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>JavaScript BOM操作 | 月光下的风</title><meta name="keywords" content="JavaScript"><meta name="author" content="小云ovo"><meta name="copyright" content="小云ovo"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Window 对象Window 对象表示浏览器中打开的窗口。  如果文档包含框架（frame 或 iframe 标签），浏览器会为 HTML 文档创建一个 window 对象，并为每个框架创建一个额外的 window 对象。 注释：没有应用于 window 对象的公开标准，不过所有浏览器都支持该对象。 window 对象常用属性   属性 描述    history 对象 用户访问过的统一资源定位">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript BOM操作">
+<meta property="og:url" content="http://example.com/2022/06/15/JavaScript/JavaScript%20BOM%20%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="月光下的风">
+<meta property="og:description" content="Window 对象Window 对象表示浏览器中打开的窗口。  如果文档包含框架（frame 或 iframe 标签），浏览器会为 HTML 文档创建一个 window 对象，并为每个框架创建一个额外的 window 对象。 注释：没有应用于 window 对象的公开标准，不过所有浏览器都支持该对象。 window 对象常用属性   属性 描述    history 对象 用户访问过的统一资源定位">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://a.ideaopen.cn/Mercury/ItGr3BdQ.png">
+<meta property="article:published_time" content="2022-06-15T09:27:04.000Z">
+<meta property="article:modified_time" content="2022-07-06T09:26:53.000Z">
+<meta property="article:author" content="小云ovo">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://a.ideaopen.cn/Mercury/ItGr3BdQ.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/06/15/JavaScript/JavaScript%20BOM%20%E6%93%8D%E4%BD%9C/"><link rel="preconnect" href="//testingcf.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://testingcf.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://testingcf.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://testingcf.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://testingcf.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'JavaScript BOM操作',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-07-06 17:26:53'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_3180392_jq3a2c0asfl.css"><link rel="stylesheet" href="https://cdn-1309416366.cos.ap-beijing.myqcloud.com/CSS/butterfly_img.css"><link rel="stylesheet" href="/css/mouse.css"><meta name="generator" content="Hexo 5.4.1"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://janyork-1309416366.file.myqcloud.com/2022/02/14/114a84b723e66.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw iconfont icon-pinglun-1"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://c.sady0.com/go.html"><i class="fa-fw iconfont icon-tianwen"></i><span> 虫洞</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://a.ideaopen.cn/Mercury/ItGr3BdQ.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">月光下的风</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw iconfont icon-pinglun-1"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://c.sady0.com/go.html"><i class="fa-fw iconfont icon-tianwen"></i><span> 虫洞</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JavaScript BOM操作</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-06-15T09:27:04.000Z" title="发表于 2022-06-15 17:27:04">2022-06-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-07-06T09:26:53.000Z" title="更新于 2022-07-06 17:26:53">2022-07-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JavaScript/">JavaScript</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JavaScript BOM操作"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Window-对象"><a href="#Window-对象" class="headerlink" title="Window 对象"></a>Window 对象</h2><p>Window 对象表示浏览器中打开的窗口。 </p>
+<p>如果文档包含框架（frame 或 iframe 标签），浏览器会为 HTML 文档创建一个 window 对象，并为每个框架创建一个额外的 window 对象。</p>
+<p><strong>注释：</strong>没有应用于 window 对象的公开标准，不过所有浏览器都支持该对象。</p>
+<h3 id="window-对象常用属性"><a href="#window-对象常用属性" class="headerlink" title="window 对象常用属性"></a>window 对象常用属性</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>history 对象</td>
+<td>用户访问过的统一资源定位符（Uniform Resource Locator, URL） 信息</td>
+</tr>
+<tr>
+<td>location 对象</td>
+<td>当前 URL 信息</td>
+</tr>
+<tr>
+<td>screen 对象</td>
+<td>只读属性，包含客户端显示屏幕上的信息</td>
+</tr>
+<tr>
+<td>navigator 对象</td>
+<td>浏览器本身信息</td>
+</tr>
+</tbody></table>
+<p><strong>注释：</strong>window 对象是 JS 的最顶层对象，其他的 BOM 对象都是 window 对象的属性</p>
+<hr>
+<h3 id="window-对象的常用方法"><a href="#window-对象的常用方法" class="headerlink" title="window 对象的常用方法"></a>window 对象的常用方法</h3><p>语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.方法名()</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>alert()</td>
+<td>警示框 (显示一个带有提示信息和一个确定按钮)</td>
+</tr>
+<tr>
+<td>confirm()</td>
+<td>对话框 (显示带有提示信息以及 “确定” 和 “取消” 按钮)</td>
+</tr>
+<tr>
+<td>prompt()</td>
+<td>输入框 (提示用户输入的对话框)</td>
+</tr>
+<tr>
+<td>open()</td>
+<td>根据指定的 URL 打开一个新的浏览器窗口或查找一个已经命名的窗口</td>
+</tr>
+<tr>
+<td>close()</td>
+<td>关闭浏览器窗口</td>
+</tr>
+<tr>
+<td>setInterval()</td>
+<td>根据指定的间隔毫秒数，不停的执行指定的代码</td>
+</tr>
+<tr>
+<td>clearInterval()</td>
+<td>用于停止 setInterval() 方法执行的函数代码</td>
+</tr>
+<tr>
+<td>setTimeout()</td>
+<td>根据指定的毫秒数，执行指定的代码</td>
+</tr>
+<tr>
+<td>clearTimeout()</td>
+<td>用于停止 setTimeout() 方法执行的函数代码</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="open"><a href="#open" class="headerlink" title="open()"></a>open()</h3><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="variable constant_">URL</span>,name,features,replace)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">URL</td>
+<td align="left">一个可选的字符串，声明了要在新窗口中显示的文档的 URL。如果省略了这个参数，或者它的值是空字符串，那么新窗口就不会显示任何文档。</td>
+</tr>
+<tr>
+<td align="left">name</td>
+<td align="left">一个可选的字符串，该字符串是一个由逗号分隔的特征列表，其中包括数字、字母和下划线，该字符声明了新窗口的名称。这个名称可以用作标记 <a> 和 <form> 的属性 target 的值。如果该参数指定了一个已经存在的窗口，那么 open() 方法就不再创建一个新窗口，而只是返回对指定窗口的引用。在这种情况下，features 将被忽略。</td>
+</tr>
+<tr>
+<td align="left">features</td>
+<td align="left">一个可选的字符串，声明了新窗口要显示的标准浏览器的特征。如果省略该参数，新窗口将具有所有标准特征。在<a target="_blank" rel="noopener" href="https://www.w3school.com.cn/jsref/met_win_open.asp#windowfeatures">窗口特征</a>这个表格中，我们对该字符串的格式进行了详细的说明。</td>
+</tr>
+<tr>
+<td align="left">replace</td>
+<td align="left">一个可选的布尔值。规定了装载到窗口的 URL 是在窗口的浏览历史中创建一个新条目，还是替换浏览历史中的当前条目。支持下面的值：true - URL 替换浏览历史中的当前条目。false - URL 在浏览历史中创建新的条目。</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="提示和注释"><a href="#提示和注释" class="headerlink" title="提示和注释"></a>提示和注释</h3><p><strong>重要事项：</strong>请不要混淆方法 Window.open() 与方法 Document.open()，这两者的功能完全不同。为了使您的代码清楚明白，请使用 Window.open()，而不要使用 open()。</p>
+<hr>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>下面的例子讲在新浏览器窗口中打开 <a target="_blank" rel="noopener" href="http://www.w3school.com.cn/">www.w3school.com.cn</a> ：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">function</span> <span class="title function_">open_win</span>(<span class="params"></span>) </span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://www.w3school.com.cn&quot;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">button</span> <span class="attr">value</span>=<span class="string">&quot;Open Window&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;open_win()&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>引自 <a target="_blank" rel="noopener" href="https://www.w3school.com.cn/jsref/met_win_open.asp">HTML DOM open() 方法</a> </p>
+</blockquote>
+<hr>
+<h2 id="History"><a href="#History" class="headerlink" title="History"></a>History</h2><p>对象可以用来操作浏览器向前或向后翻页</p>
+<ul>
+<li>length属性：返回历史记录列表中的网址数量</li>
+<li>back()：回退到<strong>上一个</strong>页面，同浏览器的回退按钮一样</li>
+<li>forward()：跳转<strong>下一个</strong>页面，同浏览器的前进按钮一样</li>
+<li>go()：跳转到指定的页面，但它需要一个<strong>整数作为参数</strong><ul>
+<li>go(1)：表示<strong>向前</strong>跳转一个页面 相当于forward()</li>
+<li>go(2)：表示<strong>向前</strong>跳转两个页面 以此类推</li>
+<li>go(-1)：表示<strong>向后</strong>跳转一个页面</li>
+<li>go(-2)：表示<strong>向后</strong>跳转两个页面 以此类推</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Location"><a href="#Location" class="headerlink" title="Location"></a>Location</h2><p>window.location对象：用于获得<strong>当前页面的地址</strong> (URL)，并把浏览器重定向到新的页面。在编写时可不使用 window 这个前缀。</p>
+<p>该对象中封装了浏览器的地址栏的信息，如果直接打印<code>location</code>，则可以获取到地址栏的信息（当前页面的<strong>完整路径</strong>）</p>
+<p>alert(location);如果直接将<code>location</code>属性修改为一个完整的路径，或相对路径<br>则我们页面会自动跳转到该路径，并且会生成相应的历史记录</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">location = <span class="string">&quot;http:www.baidu.com&quot;</span>;</span><br><span class="line">location = <span class="string">&quot;01.BOM.html&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>assign()：用来跳转到其他的页面，作用和直接修改<code>location</code>一样</p>
+<p>reload()：用于重新加载当前页面，作用和<strong>刷新</strong>按钮一样，如果在方法中传递一个true，作为参数，则会<strong>强制清空缓存刷新页面</strong></p>
+<p>代码示例： </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location.<span class="title function_">reload</span>(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p>replace()：可以使用一个新的页面替换当前页面，调用完毕也会跳转页面不会生成历史记录，不能使用回退按钮回退 </p>
+<hr>
+<h2 id="screen-对象"><a href="#screen-对象" class="headerlink" title="screen 对象"></a>screen 对象</h2><p>window.screen 对象包含有关用户屏幕的信息。</p>
+<h3 id="screen-对象的常用属性"><a href="#screen-对象的常用属性" class="headerlink" title="screen 对象的常用属性"></a>screen 对象的常用属性</h3><ul>
+<li>screen.availWidth：属性返回访问者屏幕的宽度，以像素计，减去界面特性，比如窗口任务栏。</li>
+<li>screen.availHeight 属性返回访问者屏幕的高度，以像素计，减去界面特性，比如窗口任务栏。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取屏幕的宽度和高度之和</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">write</span>(screen.<span class="property">availHeight</span>+screen.<span class="property">availWidth</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="navigator对象"><a href="#navigator对象" class="headerlink" title="navigator对象"></a>navigator对象</h2><p>window.navigator 对象包含有关访问者浏览器的信息。在编写时可不使用 window 这个前缀。</p>
+<ul>
+<li>navigator.platform：操作系统类型</li>
+<li>navigator.userAgent：浏览器设定的 User-Agent 字符串</li>
+<li>navigator.appName：浏览器名称</li>
+<li>navigator.appVersion：浏览器版本</li>
+<li>navigator.language：浏览器设置的语言</li>
+</ul>
+<p>userAgent则是最常用的属性，userAgent 是一个字符串，这个字符串中包含有用来描述浏览器信息的内容，</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>不同的浏览器会有不同的 userAgent </p>
+<h3 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">alert</span>(navigator.<span class="property">appName</span>);  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">var</span> ua = navigator.<span class="property">userAgent</span>;  </span><br><span class="line">  </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ua);  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span>(firefoxi.<span class="title function_">test</span>(ua))&#123;  </span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&quot;你是火狐！！！&quot;</span>);  </span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(chromei.<span class="title function_">test</span>(ua))&#123;  </span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&quot;你是Chrome&quot;</span>);  </span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(msiei.<span class="title function_">test</span>(ua))&#123;  </span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&quot;你是IE浏览器~~~&quot;</span>);  </span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">&quot;ActiveXObject&quot;</span> <span class="keyword">in</span> <span class="variable language_">window</span>)&#123;  </span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&quot;你是IE11，枪毙了你~~~&quot;</span>);  </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="JavaScript-定时函数"><a href="#JavaScript-定时函数" class="headerlink" title="JavaScript 定时函数"></a>JavaScript 定时函数</h2><h3 id="setInterval-定时器"><a href="#setInterval-定时器" class="headerlink" title="setInterval() 定时器"></a>setInterval() 定时器</h3><p>定时调用可以将一个函数每隔一段时间，执行一次。</p>
+<p><strong>参数：</strong></p>
+<ol>
+<li>回调函数，该函数会每隔一段时间被调用一次</li>
+<li>每次调用间隔的时间，单位是毫秒 </li>
+</ol>
+<p><strong>返回值：</strong></p>
+<ul>
+<li>返回一个Number类型的数据，这个数字用来作为定时器的唯一标识。</li>
+</ul>
+<h3 id="关闭定时器"><a href="#关闭定时器" class="headerlink" title="关闭定时器"></a>关闭定时器</h3><p>clearInterval() 可以用来关闭一个定时器</p>
+<p>方法中需要一个定时器的标识作为参数，这样将关闭标识对应的定时器 </p>
+<p>clearInterval()可以接收任意参数，如果参数是一个有效的定时器的标识，则停止对应的定时器</p>
+<p>如果参数不是一个有效的标识，则什么也不做。</p>
+<p>代码示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="number">1</span>;  </span><br><span class="line"><span class="keyword">var</span> timer = <span class="built_in">setInterval</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;  </span><br><span class="line">	count.<span class="property">innerHTML</span> = num++;  </span><br><span class="line">	<span class="keyword">if</span>(num == <span class="number">11</span>) &#123;  </span><br><span class="line">		<span class="comment">//关闭定时器  </span></span><br><span class="line">		<span class="built_in">clearInterval</span>(timer);  </span><br><span class="line">	&#125;  </span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="setTimeout-延时调用"><a href="#setTimeout-延时调用" class="headerlink" title="setTimeout() 延时调用"></a>setTimeout() 延时调用</h3><p>延时调用一个函数不马上执行，而是隔一段时间以后在执行，而且只会执行一次</p>
+<h4 id="延时调用和定时调用的区别"><a href="#延时调用和定时调用的区别" class="headerlink" title="延时调用和定时调用的区别"></a>延时调用和定时调用的区别</h4><p><strong>定时</strong>调用会执行<strong>多次</strong>，而<strong>延时</strong>调用只会执行<strong>一次</strong></p>
+<p>延时调用和定时调用实际上是可以互相代替的，在开发中可以根据自己需要去选择。</p>
+<p>代码<strong>示例</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> timer = <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(num++);</span><br><span class="line">&#125;,<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="关闭延时调用"><a href="#关闭延时调用" class="headerlink" title="关闭延时调用"></a>关闭延时调用</h3><p>使用<code>clearTimeout()</code>来关闭一个延时调用，如<code>clearTimeout(timer);</code></p>
+<blockquote>
+<p>多处资料引自  <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41171409/article/details/123010303">JavaScript之BOM操作（重点）程序猿tu的博客-CSDN博客</a> </p>
+</blockquote>
+<hr>
+<h2 id="document-对象"><a href="#document-对象" class="headerlink" title="document 对象"></a>document 对象</h2><p>转自： <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000000660947">详解JavaScript Document对象 - SegmentFault 思否</a> </p>
+<p>在浏览器中，与用户进行数据交换都是通过客户端的<code>javascript</code>代码来实现的，而完成这些交互工作大多数是<code>document</code>对象及其部件进行的，因此<code>document</code>对象是一个比较重要的对象。</p>
+<h3 id="document对象概述"><a href="#document对象概述" class="headerlink" title="document对象概述"></a>document对象概述</h3><p><code>document</code>对象是文档的根节点，<code>window.document</code>属性就指向这个对象。也就是说，只要浏览器开始载入<code>HTML</code>文档，这个对象就开始存在了，可以直接调用。</p>
+<p><code>document.childNodes</code>属性返回该对象的所有子节点。对于HTML文档来说，<code>document</code>对象一般有两个子节点。</p>
+<p>第一个子节点是<code>document.doctype</code>，表示文档类型节点（DocumentType）。对于HTML5文档来说，该节点就代表``。</p>
+<p>第二个子节点是<code>document.documentElement</code>，表示元素节点（Element），代表：<code>。</code></p>
+<h3 id="document-对象的属性"><a href="#document-对象的属性" class="headerlink" title="document 对象的属性"></a>document 对象的属性</h3><p><code>document</code>对象主要有如下属性：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>document.title</td>
+<td>设置文档标题等价于HTML的<title>标签</td>
+</tr>
+<tr>
+<td>document.bgColor</td>
+<td>设置页面背景色</td>
+</tr>
+<tr>
+<td>document.linkColor</td>
+<td>未点击过的链接颜色</td>
+</tr>
+<tr>
+<td>document.alinkColor</td>
+<td>激活链接(焦点在此链接上)的颜色</td>
+</tr>
+<tr>
+<td>document.fgColor</td>
+<td>设置前景色(文本颜色)</td>
+</tr>
+<tr>
+<td>document.vlinkColor</td>
+<td>已点击过的链接颜色</td>
+</tr>
+<tr>
+<td>document.URL</td>
+<td>设置URL属性从而在同一窗口打开另一网页</td>
+</tr>
+<tr>
+<td>document.fileCreatedDate</td>
+<td>文件建立日期，只读属性</td>
+</tr>
+<tr>
+<td>document.fileModifiedDate</td>
+<td>文件修改日期，只读属性</td>
+</tr>
+<tr>
+<td>document.fileSize</td>
+<td>文件大小，只读属性</td>
+</tr>
+<tr>
+<td>document.cookie</td>
+<td>设置和读出cookie</td>
+</tr>
+<tr>
+<td>document.charset</td>
+<td>设置字符集 简体中文:gb2312</td>
+</tr>
+</tbody></table>
+<h3 id="指向其他节点或对象的属性"><a href="#指向其他节点或对象的属性" class="headerlink" title="指向其他节点或对象的属性"></a>指向其他节点或对象的属性</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">document.doctype // <span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line">document.documentElement //返回文档的根节点 <span class="tag">&lt;<span class="name">html</span>&gt;</span>...<span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line">document.head // <span class="tag">&lt;<span class="name">head</span>&gt;</span>...<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">document.body // <span class="tag">&lt;<span class="name">body</span>&gt;</span>...<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">document.defaultView // window</span><br><span class="line"></span><br><span class="line">document.querySelector(&#x27;textarea&#x27;).focus();</span><br><span class="line">document.activeElement // <span class="tag">&lt;<span class="name">textarea</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>querySelector</code>返回的是一个对象，而<code>querySelectorAll</code>返回的一个集合(<code>NodeList</code>)。IE8以上支持</p>
+<p>详见：<a target="_blank" rel="noopener" href="http://www.javascriptkit.com/dhtmltutors/css_selectors_api.shtml">W3C selector API</a></p>
+<h3 id="指向特定元素集合的属性"><a href="#指向特定元素集合的属性" class="headerlink" title="指向特定元素集合的属性"></a>指向特定元素集合的属性</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">all</span> ：文档中所有的元素，<span class="title class_">Firefox</span>不支持该属性。</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">forms</span> ：所有的form元素。</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">images</span>：所有的img元素。</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">links</span>：所有的a元素。</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">scripts</span>：所有的script元素。</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">styleSheets</span>：所有的link或者style元素。</span><br></pre></td></tr></table></figure>
+
+<h3 id="对象方法："><a href="#对象方法：" class="headerlink" title="对象方法："></a>对象方法：</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>document.write()</td>
+<td>动态向页面写入内容</td>
+</tr>
+<tr>
+<td>document.createElement(Tag)</td>
+<td>创建一个html标签对象</td>
+</tr>
+<tr>
+<td>document.getElementById(ID)</td>
+<td>获得指定ID值的对象</td>
+</tr>
+<tr>
+<td>document.getElementsByTagName(tagname)</td>
+<td>获得指定标签名的对象</td>
+</tr>
+<tr>
+<td>document.getElementsByName(Name)</td>
+<td>获得指定Name值的对象</td>
+</tr>
+<tr>
+<td>document.getElementsByClassName(classname)</td>
+<td>获得指定类名的对象（html5 API）</td>
+</tr>
+</tbody></table>
+<p><code>getElementById(id)</code>方法返回一个对象，该对象对应着文档里一个特定的元素节点。<br><code>getElementsByTagName()</code>方法将返回一个对象数组，他们分别对应着文档里一个特定的元素节点</p>
+<p><code>write()和writeln()</code>方法：区别在于后者在传送到文档中的字符串末时附加一个回车符。</p>
+<p><code>querySelector</code>方法的参数使用CSS选择器语法，<code>getElementById</code>方法的参数是HTML标签元素的<code>id</code>属性。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.<span class="built_in">querySelector</span>(<span class="string">&#x27;li&#x27;</span>)</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&#x27;last&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果有多个节点满足<code>querySelector</code>方法的条件，则返回第一个匹配的节点。</p>
+<p><code>document.createElement()</code>是在对象中创建一个对象，要与<code>appendChild()</code> 或 <code>insertBefore()</code>方法联合使用。</p>
+<p>其中，<code>appendChild()</code> 方法在节点的子节点列表末添加新的子节点。<code>insertBefore()</code> 方法在节点的子节点列表任意位置插入新的节点。</p>
+<h3 id="body-主体子对象"><a href="#body-主体子对象" class="headerlink" title="body-主体子对象"></a>body-主体子对象</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">body</span> <span class="comment">//指定文档主体的开始和结束等价于body&gt;/body&gt;</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">bgColor</span> <span class="comment">//设置或获取对象后面的背景颜色</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">link</span> <span class="comment">//未点击过的链接颜色</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">alink</span> <span class="comment">//激活链接(焦点在此链接上)的颜色</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">vlink</span> <span class="comment">//已点击过的链接颜色</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">text</span> <span class="comment">//文本色</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">innerText</span> <span class="comment">//设置body&gt;…/body&gt;之间的文本</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">innerHTML</span> <span class="comment">//设置body&gt;…/body&gt;之间的HTML代码</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">topMargin</span> <span class="comment">//页面上边距</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">leftMargin</span> <span class="comment">//页面左边距</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">rightMargin</span> <span class="comment">//页面右边距</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">bottomMargin</span> <span class="comment">//页面下边距</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">background</span> <span class="comment">//背景图片</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(oTag) <span class="comment">//动态生成一个HTML对象</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="常用对象事件"><a href="#常用对象事件" class="headerlink" title="常用对象事件"></a>常用对象事件</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">onclick</span>=”<span class="title function_">func</span>()” <span class="comment">//鼠标指针单击对象是触发</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">onmouseover</span>=”<span class="title function_">func</span>()” <span class="comment">//鼠标指针移到对象时触发</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">onmouseout</span>=”<span class="title function_">func</span>()” <span class="comment">//鼠标指针移出对象时触发</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="图层对象的4个属性"><a href="#图层对象的4个属性" class="headerlink" title="图层对象的4个属性"></a>图层对象的4个属性</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(”<span class="variable constant_">ID</span>”).<span class="property">innerText</span> <span class="comment">//动态输出文本</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(”<span class="variable constant_">ID</span>”).<span class="property">innerHTML</span> <span class="comment">//动态输出HTML</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(”<span class="variable constant_">ID</span>”).<span class="property">outerText</span> <span class="comment">//同innerText</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(”<span class="variable constant_">ID</span>”).<span class="property">outerHTML</span> <span class="comment">//同innerHTML</span></span><br></pre></td></tr></table></figure>
+
+<p>看如下例子：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>hello world!<span class="tag">&lt;<span class="name">span</span>&gt;</span>你好<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> p = <span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&#x27;p&#x27;</span>);<span class="comment">//集合</span></span></span><br><span class="line"><span class="language-javascript"><span class="comment">//    alert(p[0].textContent);//firefox</span></span></span><br><span class="line"><span class="language-javascript"><span class="comment">//    alert(p[0].innerText);//IE</span></span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">alert</span>(p[<span class="number">0</span>].<span class="property">innerHTML</span>);<span class="comment">//hello world!&lt;span&gt;你好&lt;/span&gt;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">alert</span>(p[<span class="number">0</span>].<span class="property">outerHTML</span>);<span class="comment">//&lt;p&gt;hello world!&lt;span&gt;你好&lt;/span&gt;&lt;/p&gt;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">alert</span>(p[<span class="number">0</span>].<span class="property">textContent</span>);<span class="comment">//hello world!你好</span></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://wish.ideaopen.cn">小云ovo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/06/15/JavaScript/JavaScript%20BOM%20%E6%93%8D%E4%BD%9C/">http://example.com/2022/06/15/JavaScript/JavaScript%20BOM%20%E6%93%8D%E4%BD%9C/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">月光下的风</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a></div><div class="post_share"><div class="social-share" data-image="https://a.ideaopen.cn/Mercury/ItGr3BdQ.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://testingcf.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://testingcf.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/06/20/JavaScript/JavaScript%E5%87%BD%E6%95%B0%E7%AF%87%E4%B9%8BES6%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/JanYork/633bcVxr.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">JavaScript函数篇之ES6箭头函数与匿名函数</div></div></a></div><div class="next-post pull-right"><a href="/2022/06/14/JavaScript/JavaScript%20%E5%87%BD%E6%95%B0/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/gDVbQxQU.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">JavaScript 函数</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/06/22/JavaScript/For%E5%BE%AA%E7%8E%AF%E4%B8%AD%EF%BC%8C%E5%8F%AA%E8%83%BDi++%E6%88%96%E8%80%85++i%E5%90%97%EF%BC%9F/" title="For循环中，只能 i++= 或者 ++i 吗？"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/JanYork/xVyBbUOQ.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-22</div><div class="title">For循环中，只能 i++= 或者 ++i 吗？</div></div></a></div><div><a href="/2022/06/27/JavaScript/JavaScript%20%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1/" title="JavaScript 内置对象"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/ZlSPC3tI.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">JavaScript 内置对象</div></div></a></div><div><a href="/2022/06/14/JavaScript/JavaScript%20%E5%87%BD%E6%95%B0/" title="JavaScript 函数"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/gDVbQxQU.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-14</div><div class="title">JavaScript 函数</div></div></a></div><div><a href="/2022/06/12/JavaScript/JavaScript%20%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" title="JavaScript 基础入门"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/KWK4NCZY.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-12</div><div class="title">JavaScript 基础入门</div></div></a></div><div><a href="/2022/06/27/JavaScript/%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%A9%E5%B1%95/" title="JavaScript 内置对象的扩展"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/8Go4jymL.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">JavaScript 内置对象的扩展</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://janyork-1309416366.file.myqcloud.com/2022/02/14/114a84b723e66.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">小云ovo</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Window-%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.</span> <span class="toc-text">Window 对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#window-%E5%AF%B9%E8%B1%A1%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7"><span class="toc-number">1.1.</span> <span class="toc-text">window 对象常用属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#window-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">window 对象的常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#open"><span class="toc-number">1.3.</span> <span class="toc-text">open()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E7%A4%BA%E5%92%8C%E6%B3%A8%E9%87%8A"><span class="toc-number">1.5.</span> <span class="toc-text">提示和注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B"><span class="toc-number">1.6.</span> <span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#History"><span class="toc-number">2.</span> <span class="toc-text">History</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Location"><span class="toc-number">3.</span> <span class="toc-text">Location</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#screen-%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.</span> <span class="toc-text">screen 对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#screen-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7"><span class="toc-number">4.1.</span> <span class="toc-text">screen 对象的常用属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#navigator%E5%AF%B9%E8%B1%A1"><span class="toc-number">5.</span> <span class="toc-text">navigator对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-number">5.1.</span> <span class="toc-text">注意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B-1"><span class="toc-number">5.2.</span> <span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-%E5%AE%9A%E6%97%B6%E5%87%BD%E6%95%B0"><span class="toc-number">6.</span> <span class="toc-text">JavaScript 定时函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#setInterval-%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="toc-number">6.1.</span> <span class="toc-text">setInterval() 定时器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="toc-number">6.2.</span> <span class="toc-text">关闭定时器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setTimeout-%E5%BB%B6%E6%97%B6%E8%B0%83%E7%94%A8"><span class="toc-number">6.3.</span> <span class="toc-text">setTimeout() 延时调用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BB%B6%E6%97%B6%E8%B0%83%E7%94%A8%E5%92%8C%E5%AE%9A%E6%97%B6%E8%B0%83%E7%94%A8%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">6.3.1.</span> <span class="toc-text">延时调用和定时调用的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E5%BB%B6%E6%97%B6%E8%B0%83%E7%94%A8"><span class="toc-number">6.4.</span> <span class="toc-text">关闭延时调用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#document-%E5%AF%B9%E8%B1%A1"><span class="toc-number">7.</span> <span class="toc-text">document 对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#document%E5%AF%B9%E8%B1%A1%E6%A6%82%E8%BF%B0"><span class="toc-number">7.1.</span> <span class="toc-text">document对象概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#document-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-number">7.2.</span> <span class="toc-text">document 对象的属性</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/07/07/Git/Git%E4%B8%8A%E4%BC%A0%E6%95%99%E7%A8%8B/" title="Git 上传教程"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/GsNlvnTz.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Git 上传教程"/></a><div class="content"><a class="title" href="/2022/07/07/Git/Git%E4%B8%8A%E4%BC%A0%E6%95%99%E7%A8%8B/" title="Git 上传教程">Git 上传教程</a><time datetime="2022-07-07T08:43:30.000Z" title="发表于 2022-07-07 16:43:30">2022-07-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/06/JavaScript/jQuery%20%E6%93%8D%E4%BD%9CDOM/" title="jQuery操作DOM"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/5n75Qjf3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="jQuery操作DOM"/></a><div class="content"><a class="title" href="/2022/07/06/JavaScript/jQuery%20%E6%93%8D%E4%BD%9CDOM/" title="jQuery操作DOM">jQuery操作DOM</a><time datetime="2022-07-06T09:50:20.000Z" title="发表于 2022-07-06 17:50:20">2022-07-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/06/JavaScript/jQuery%20%E4%BA%8B%E4%BB%B6/" title="jQuery 事件"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/mcGq8f5V.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="jQuery 事件"/></a><div class="content"><a class="title" href="/2022/07/06/JavaScript/jQuery%20%E4%BA%8B%E4%BB%B6/" title="jQuery 事件">jQuery 事件</a><time datetime="2022-07-06T09:20:20.000Z" title="发表于 2022-07-06 17:20:20">2022-07-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/27/JavaScript/%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%A9%E5%B1%95/" title="JavaScript 内置对象的扩展"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/8Go4jymL.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaScript 内置对象的扩展"/></a><div class="content"><a class="title" href="/2022/06/27/JavaScript/%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%A9%E5%B1%95/" title="JavaScript 内置对象的扩展">JavaScript 内置对象的扩展</a><time datetime="2022-06-27T10:43:20.000Z" title="发表于 2022-06-27 18:43:20">2022-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/27/JavaScript/JavaScript%20%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1/" title="JavaScript 内置对象"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/ZlSPC3tI.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaScript 内置对象"/></a><div class="content"><a class="title" href="/2022/06/27/JavaScript/JavaScript%20%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1/" title="JavaScript 内置对象">JavaScript 内置对象</a><time datetime="2022-06-27T10:41:20.000Z" title="发表于 2022-06-27 18:41:20">2022-06-27</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://janyork-1309416366.file.myqcloud.com/2022/02/12/c0424fbb7d0fa.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 小云ovo</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://testingcf.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://testingcf.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'myblog-9gtq5cct5577d7b6',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'myblog-9gtq5cct5577d7b6',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://testingcf.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://testingcf.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script src="https://testingcf.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://testingcf.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://testingcf.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://testingcf.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

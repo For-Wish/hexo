@@ -1,0 +1,312 @@
+<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>MySQL语法进阶 | 月光下的风</title><meta name="keywords" content="MySQL"><meta name="author" content="小云ovo"><meta name="copyright" content="小云ovo"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.MySQL高级语法1.1 修改表 修改表名  1ALTER TABLE 旧表名 RENAME 新表名;   添加字段  1ALTER TABLE 表名 ADD 字段名  数据类型  [属性];   修改字段  1ALTER TABLE 表名 CHANGE 原字段名 新字段名 数据类型 [属性];   删除字段  1ALTER TABLE 表名 DROP 字段名;    2、添加主键  语法：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL语法进阶">
+<meta property="og:url" content="http://example.com/2022/05/11/MySQL/mysql%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="月光下的风">
+<meta property="og:description" content="1.MySQL高级语法1.1 修改表 修改表名  1ALTER TABLE 旧表名 RENAME 新表名;   添加字段  1ALTER TABLE 表名 ADD 字段名  数据类型  [属性];   修改字段  1ALTER TABLE 表名 CHANGE 原字段名 新字段名 数据类型 [属性];   删除字段  1ALTER TABLE 表名 DROP 字段名;    2、添加主键  语法：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://a.ideaopen.cn/Mercury/i6Kg9IrW.jpg">
+<meta property="article:published_time" content="2022-05-11T07:12:30.000Z">
+<meta property="article:modified_time" content="2022-05-27T09:08:42.000Z">
+<meta property="article:author" content="小云ovo">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://a.ideaopen.cn/Mercury/i6Kg9IrW.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/05/11/MySQL/mysql%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//testingcf.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://testingcf.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://testingcf.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://testingcf.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://testingcf.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MySQL语法进阶',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-27 17:08:42'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_3180392_jq3a2c0asfl.css"><link rel="stylesheet" href="https://cdn-1309416366.cos.ap-beijing.myqcloud.com/CSS/butterfly_img.css"><link rel="stylesheet" href="/css/mouse.css"><meta name="generator" content="Hexo 5.4.1"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://janyork-1309416366.file.myqcloud.com/2022/02/14/114a84b723e66.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw iconfont icon-pinglun-1"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://c.sady0.com/go.html"><i class="fa-fw iconfont icon-tianwen"></i><span> 虫洞</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://a.ideaopen.cn/Mercury/i6Kg9IrW.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">月光下的风</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw iconfont icon-pinglun-1"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://c.sady0.com/go.html"><i class="fa-fw iconfont icon-tianwen"></i><span> 虫洞</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MySQL语法进阶</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-11T07:12:30.000Z" title="发表于 2022-05-11 15:12:30">2022-05-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-27T09:08:42.000Z" title="更新于 2022-05-27 17:08:42">2022-05-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/MySQL/">MySQL</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MySQL语法进阶"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-MySQL高级语法"><a href="#1-MySQL高级语法" class="headerlink" title="1.MySQL高级语法"></a>1.MySQL高级语法</h2><h3 id="1-1-修改表"><a href="#1-1-修改表" class="headerlink" title="1.1 修改表"></a>1.1 修改表</h3><ol>
+<li>修改表名</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 旧表名 RENAME 新表名;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>添加字段</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD 字段名  数据类型  [属性];</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>修改字段</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 CHANGE 原字段名 新字段名 数据类型 [属性];</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>删除字段</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 DROP 字段名;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2、添加主键"><a href="#2、添加主键" class="headerlink" title="2、添加主键"></a>2、添加主键</h2><p>  <strong>语法：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD CONSTRAINT 主键名 </span><br><span class="line">PRIMARY KEY 表名（主键字段）;</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>例：</strong>设置grade表中gradeId字段为主键</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE `grade` ADD CONSTRAINT `pk_grade` PRIMARY KEY `grade`(`gradeId`);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3、添加外键"><a href="#3、添加外键" class="headerlink" title="3、添加外键"></a>3、添加外键</h2><p><strong>语法：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD CONSTRAINT 外键名  FOREIGN KEY（外键字段）REFERENCES 关联表名（关联字段）;</span><br></pre></td></tr></table></figure>
+
+<p><strong>例：</strong>将student表的gradeId字段和grade表的gradeId字段建立外键关联</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter table `student`  add  constraint fk_student_grade foreign key(`gradeId`) </span><br><span class="line">references `grade` (`gradeId`);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4、DML语句–插入单条数据记录"><a href="#4、DML语句–插入单条数据记录" class="headerlink" title="4、DML语句–插入单条数据记录"></a>4、DML语句–插入单条数据记录</h2><p><strong>语法：</strong>INSERT INTO 表名 [(字段名列表)] VALUES (值列表);</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>字段名是可选的，如省略则依次插入所有字段</li>
+<li>多个列表和多个值之间使用逗号分隔</li>
+<li>值列表和字段名列表一一对应</li>
+<li>如插入的是表中部分数据，字段名列表必填</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO `student`(`loginPwd`,`studentName`,`gradeId`,`phone`,`bornDate`)</span><br><span class="line">VALUES(&#x27;123&#x27;,&#x27;黄小平&#x27;,1,&#x27;13956799999&#x27;,&#x27;1996-5-8&#x27;);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5、DML语句–插入多条数据记录"><a href="#5、DML语句–插入多条数据记录" class="headerlink" title="5、DML语句–插入多条数据记录"></a>5、DML语句–插入多条数据记录</h2><p><strong>语法：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO 新表（字段名列表）VALUES(值列表1),(值列表2),……,(值列表n);</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO `subject`(`subjectName`,`classHour`,`gradeID`)</span><br><span class="line">VALUES(&#x27;Logic Java&#x27;,220,1),(&#x27;HTML&#x27;,160,1),(&#x27;Java OOP&#x27;,230,2);</span><br></pre></td></tr></table></figure>
+
+<p><strong>经验：</strong><br>      为避免表结构发生变化引发的错误，建议插入数据时写明具体字段名！</p>
+<h2 id="6、DML语句——将查询结果插入新表"><a href="#6、DML语句——将查询结果插入新表" class="headerlink" title="6、DML语句——将查询结果插入新表"></a>6、DML语句——将查询结果插入新表</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `phoneList`(</span><br><span class="line">    SELECT `studentName`,`phone`</span><br><span class="line">    FROM `student`</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>注：如新表已存在，将会报错！</p>
+<h2 id="7、DML语句——数据更新、删除"><a href="#7、DML语句——数据更新、删除" class="headerlink" title="7、DML语句——数据更新、删除"></a>7、DML语句——数据更新、删除</h2><ol>
+<li>更新数据记录</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update 表名 set 字段1=值1,字段2=值2,...,字段n=值n [where 条件];</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>删除数据记录</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM 表名 [WHERE条件];</span><br><span class="line">TRUNCATE TABLE 表名;</span><br></pre></td></tr></table></figure>
+
+<p>TRUNCATE语句删除后将重置自增列，表结构及其字段、约束、索引保持不变，执行速度比DELETE语句快。</p>
+<h2 id="8、DQL语句"><a href="#8、DQL语句" class="headerlink" title="8、DQL语句"></a>8、DQL语句</h2><p><strong>语法：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT  &lt;字段名列表&gt;</span><br><span class="line">FROM  &lt;表名或视图&gt;</span><br><span class="line">[WHERE  &lt;查询条件&gt;]</span><br><span class="line">[GROUP BY &lt;分组的字段名&gt;]</span><br><span class="line">[HAVING &lt;条件&gt;]</span><br><span class="line">[ORDER BY &lt;排序的字段名&gt; [ASC 或 DESC]]</span><br></pre></td></tr></table></figure>
+
+
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT `studentNo`,`studentName`,`phone`,`address`,`bornDate` </span><br><span class="line">FROM `student`</span><br><span class="line">WHERE `gradeId` = 1</span><br><span class="line">ORDER BY studentNo;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="9、LIMIT子句"><a href="#9、LIMIT子句" class="headerlink" title="9、LIMIT子句"></a>9、LIMIT子句</h2><p>MySQL查询语句中使用LIMIT子句限制结果集<br><strong>语法</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT  &lt;字段名列表&gt;</span><br><span class="line">FROM  &lt;表名或视图&gt;</span><br><span class="line">[WHERE  &lt;查询条件&gt;]</span><br><span class="line">[GROUP BY &lt;分组的字段名&gt;]</span><br><span class="line">[ORDER BY  &lt;排序的列名&gt; [ASC 或 DESC]]</span><br><span class="line">[LIMIT [位置偏移量, ]行数];</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT `studentNo`,`studentName`,`phone`,`address`,`bornDate` </span><br><span class="line">FROM `student`</span><br><span class="line">WHERE `gradeId` = 1</span><br><span class="line">ORDER BY studentNo</span><br><span class="line">LIMIT 4,4; #(从第5条开始显示4条)</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>注：使用LIMIT子句时，注意第1条记录的位置是0！</strong></p>
+<h2 id="10、常用函数——聚合函数"><a href="#10、常用函数——聚合函数" class="headerlink" title="10、常用函数——聚合函数"></a>10、常用函数——聚合函数</h2><p>  <strong>AVG()</strong> 返回某字段的平均值</p>
+<p>  <strong>COUNT()</strong> 返回某字段的行数</p>
+<p>  <strong>MAX()</strong> 返回某字段的最大值</p>
+<p>  <strong>MIN()</strong> 返回某字段的最小值</p>
+<p>  <strong>SUM()</strong> 返回某字段的和</p>
+<h2 id="11、常用函数——字符串函数"><a href="#11、常用函数——字符串函数" class="headerlink" title="11、常用函数——字符串函数"></a>11、常用函数——字符串函数</h2><ol>
+<li>CONCAT(str1,str1…strn)     字符串连接       SELECT CONCAT(‘My’,’S’,’QL’);    返回：MySQL</li>
+<li>INSERT(str,pos,len,newstr)  字符串替换     SELECT INSERT( ‘这是SQL Server数据库’,3,10,’MySQL’);   返回：这是MySQL数据库</li>
+<li>LOWER(str)     将字符串转为小写  SELECT LOWER(‘MySQL’);  返回：mysql</li>
+<li>UPPER(str)    将字符串转为大写    SELECT UPPER(‘MySQL’);   返回：MYSQL</li>
+<li>SUBSTRING(str,num,len)   字符串截取  SELECT SUBSTRING( ‘JavaMySQLOracle’,5,5);   返回：MySQL</li>
+</ol>
+<h2 id="12、常用函数——时间日期函数"><a href="#12、常用函数——时间日期函数" class="headerlink" title="12、常用函数——时间日期函数"></a>12、常用函数——时间日期函数</h2><p>CURDATE()  获取当前日期   SELECT CURDATE();返回：2016-08-08<br>CURTIME()  获取当前时间   SELECT CURTIME();  返回：19:19:26<br>NOW()   获取当前日期和时间   SELECT NOW();返回：2016-08-08 19:19:26<br>WEEK(date)  返回日期date为一年中的第几周  SELECT WEEK(NOW());<br>YEAR(date)  返回日期date的年份   SELECT YEAR(NOW());<br>HOUR(time)  返回时间time的小时值  SELECT HOUR(NOW());<br>DATEDIFF(date1,date2)  返回日期参数date1和date2之间相隔的天数  SELECT DATEDIFF(NOW(),’2008-8-8’);  返回：2881    </p>
+<h2 id="13、常用函数——数学函数"><a href="#13、常用函数——数学函数" class="headerlink" title="13、常用函数——数学函数"></a>13、常用函数——数学函数</h2><p>CEIL(x)返回大于或等于数值x的最小整数   SELECT CEIL(2.3) 返回：3<br>FLOOR(x)  返回小于或等于数值x的最大整数  SELECT FLOOR(2.3) 返回：2<br>RAND()  返回0~1间的随机数  SELECT RAND()  返回：0.5525468583708134</p>
+<h2 id="14、子查询"><a href="#14、子查询" class="headerlink" title="14、子查询"></a>14、子查询</h2><p><strong>1）子查询是一个嵌套在 SELECT、INSERT、UPDATE 或 DELETE 语句或其他子查询中的查询</strong><br><strong>2）子查询在WHERE语句中的一般用法</strong><br><strong>语法：</strong>SELECT … FROM 表1 WHERE 字段1  比较运算符(子查询)<br><strong>注：</strong>将子查询和比较运算符联合使用，必须保证子查询返回的值不能多于一个<br><strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT `studentNo`,`studentName`,`sex`,`bornDate`,`address`</span><br><span class="line"> FROM `student` </span><br><span class="line"> WHERE `bornDate` &gt; (SELECT `bornDate` FROM `student` WHERE `studentName`=&#x27;李斯文&#x27;);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="15、使用子查询替换表连接"><a href="#15、使用子查询替换表连接" class="headerlink" title="15、使用子查询替换表连接"></a>15、使用子查询替换表连接</h2><p><strong>1）实现方法一：采用表连接</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT `studentName` FROM `student` stu </span><br><span class="line"> INNER JOIN `result` r ON stu.studentNO = r.studentNo     	</span><br><span class="line"> INNER JOIN `subject` sub ON r.subjectNo = sub.subjectNo 	</span><br><span class="line">WHERE `studentResult` = 60 AND `subjectName` = &#x27;Logic Java&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2）实现方法二：采用子查询</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT `studentName` FROM `student` WHERE `studentNo` = (</span><br><span class="line">SELECT `studentNo` FROM `result` </span><br><span class="line">INNER JOIN `Subject` ON result.subjectNo= subject.subjectNo </span><br><span class="line"> WHERE `studentResult`=60 AND `subjectName`=&#x27;Logic Java&#x27;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>子查询比较灵活、方便，常作为增删改查的筛选条件，适合于操纵一个表的数据<br>表连接更适合于查看多表的数据</p>
+<h2 id="16、IN子查询"><a href="#16、IN子查询" class="headerlink" title="16、IN子查询"></a>16、IN子查询</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SELECT `studentName` FROM `student` </span><br><span class="line">WHERE `studentNo` IN(</span><br><span class="line">    SELECT `studentNo` FROM `result` </span><br><span class="line">    WHERE `subjectNo` =  (</span><br><span class="line">        SELECT `subjectNo` FROM `subject`</span><br><span class="line">        WHERE `subjectName`=&#x27;Logic Java&#x27;</span><br><span class="line">    )AND `studentResult` = 60  </span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>常用IN替换等于（＝）的子查询<br>IN后面的子查询可以返回多条记录</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://wish.ideaopen.cn">小云ovo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/05/11/MySQL/mysql%E7%AC%94%E8%AE%B0/">http://example.com/2022/05/11/MySQL/mysql%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">月光下的风</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MySQL/">MySQL</a></div><div class="post_share"><div class="social-share" data-image="https://a.ideaopen.cn/Mercury/i6Kg9IrW.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://testingcf.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://testingcf.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/05/11/MySQL/MySQL%20%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/XQHkcRZF.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">MySQL存储过程</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/11/MySQL/MySQL/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/i6Kg9IrW.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MySQL基础</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/11/MySQL/MySQL%20%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/" title="MySQL存储过程"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/XQHkcRZF.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-11</div><div class="title">MySQL存储过程</div></div></a></div><div><a href="/2022/05/11/MySQL/MySQL/" title="MySQL基础"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/i6Kg9IrW.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-11</div><div class="title">MySQL基础</div></div></a></div><div><a href="/2022/05/11/MySQL/SQL%E7%BB%BC%E5%90%88%E5%AE%9E%E6%88%98/" title="MySQL —— SQL综合实战练习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/i6Kg9IrW.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-11</div><div class="title">MySQL —— SQL综合实战练习</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://janyork-1309416366.file.myqcloud.com/2022/02/14/114a84b723e66.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">小云ovo</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-MySQL%E9%AB%98%E7%BA%A7%E8%AF%AD%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">1.MySQL高级语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E4%BF%AE%E6%94%B9%E8%A1%A8"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 修改表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E6%B7%BB%E5%8A%A0%E4%B8%BB%E9%94%AE"><span class="toc-number">2.</span> <span class="toc-text">2、添加主键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E6%B7%BB%E5%8A%A0%E5%A4%96%E9%94%AE"><span class="toc-number">3.</span> <span class="toc-text">3、添加外键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81DML%E8%AF%AD%E5%8F%A5%E2%80%93%E6%8F%92%E5%85%A5%E5%8D%95%E6%9D%A1%E6%95%B0%E6%8D%AE%E8%AE%B0%E5%BD%95"><span class="toc-number">4.</span> <span class="toc-text">4、DML语句–插入单条数据记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81DML%E8%AF%AD%E5%8F%A5%E2%80%93%E6%8F%92%E5%85%A5%E5%A4%9A%E6%9D%A1%E6%95%B0%E6%8D%AE%E8%AE%B0%E5%BD%95"><span class="toc-number">5.</span> <span class="toc-text">5、DML语句–插入多条数据记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81DML%E8%AF%AD%E5%8F%A5%E2%80%94%E2%80%94%E5%B0%86%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C%E6%8F%92%E5%85%A5%E6%96%B0%E8%A1%A8"><span class="toc-number">6.</span> <span class="toc-text">6、DML语句——将查询结果插入新表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%E3%80%81DML%E8%AF%AD%E5%8F%A5%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E3%80%81%E5%88%A0%E9%99%A4"><span class="toc-number">7.</span> <span class="toc-text">7、DML语句——数据更新、删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8%E3%80%81DQL%E8%AF%AD%E5%8F%A5"><span class="toc-number">8.</span> <span class="toc-text">8、DQL语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9%E3%80%81LIMIT%E5%AD%90%E5%8F%A5"><span class="toc-number">9.</span> <span class="toc-text">9、LIMIT子句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10%E3%80%81%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E2%80%94%E2%80%94%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="toc-number">10.</span> <span class="toc-text">10、常用函数——聚合函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11%E3%80%81%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E2%80%94%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0"><span class="toc-number">11.</span> <span class="toc-text">11、常用函数——字符串函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12%E3%80%81%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E2%80%94%E2%80%94%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E5%87%BD%E6%95%B0"><span class="toc-number">12.</span> <span class="toc-text">12、常用函数——时间日期函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13%E3%80%81%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E2%80%94%E2%80%94%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0"><span class="toc-number">13.</span> <span class="toc-text">13、常用函数——数学函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14%E3%80%81%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="toc-number">14.</span> <span class="toc-text">14、子查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15%E3%80%81%E4%BD%BF%E7%94%A8%E5%AD%90%E6%9F%A5%E8%AF%A2%E6%9B%BF%E6%8D%A2%E8%A1%A8%E8%BF%9E%E6%8E%A5"><span class="toc-number">15.</span> <span class="toc-text">15、使用子查询替换表连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16%E3%80%81IN%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="toc-number">16.</span> <span class="toc-text">16、IN子查询</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/07/07/Git/Git%E4%B8%8A%E4%BC%A0%E6%95%99%E7%A8%8B/" title="Git 上传教程"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/GsNlvnTz.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Git 上传教程"/></a><div class="content"><a class="title" href="/2022/07/07/Git/Git%E4%B8%8A%E4%BC%A0%E6%95%99%E7%A8%8B/" title="Git 上传教程">Git 上传教程</a><time datetime="2022-07-07T08:43:30.000Z" title="发表于 2022-07-07 16:43:30">2022-07-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/06/JavaScript/jQuery%20%E6%93%8D%E4%BD%9CDOM/" title="jQuery操作DOM"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/5n75Qjf3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="jQuery操作DOM"/></a><div class="content"><a class="title" href="/2022/07/06/JavaScript/jQuery%20%E6%93%8D%E4%BD%9CDOM/" title="jQuery操作DOM">jQuery操作DOM</a><time datetime="2022-07-06T09:50:20.000Z" title="发表于 2022-07-06 17:50:20">2022-07-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/06/JavaScript/jQuery%20%E4%BA%8B%E4%BB%B6/" title="jQuery 事件"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/mcGq8f5V.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="jQuery 事件"/></a><div class="content"><a class="title" href="/2022/07/06/JavaScript/jQuery%20%E4%BA%8B%E4%BB%B6/" title="jQuery 事件">jQuery 事件</a><time datetime="2022-07-06T09:20:20.000Z" title="发表于 2022-07-06 17:20:20">2022-07-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/27/JavaScript/%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%A9%E5%B1%95/" title="JavaScript 内置对象的扩展"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/8Go4jymL.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaScript 内置对象的扩展"/></a><div class="content"><a class="title" href="/2022/06/27/JavaScript/%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%A9%E5%B1%95/" title="JavaScript 内置对象的扩展">JavaScript 内置对象的扩展</a><time datetime="2022-06-27T10:43:20.000Z" title="发表于 2022-06-27 18:43:20">2022-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/27/JavaScript/JavaScript%20%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1/" title="JavaScript 内置对象"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://a.ideaopen.cn/Mercury/ZlSPC3tI.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaScript 内置对象"/></a><div class="content"><a class="title" href="/2022/06/27/JavaScript/JavaScript%20%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1/" title="JavaScript 内置对象">JavaScript 内置对象</a><time datetime="2022-06-27T10:41:20.000Z" title="发表于 2022-06-27 18:41:20">2022-06-27</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://janyork-1309416366.file.myqcloud.com/2022/02/12/c0424fbb7d0fa.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 小云ovo</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://testingcf.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://testingcf.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'myblog-9gtq5cct5577d7b6',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'myblog-9gtq5cct5577d7b6',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://testingcf.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://testingcf.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script src="https://testingcf.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://testingcf.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://testingcf.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://testingcf.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
